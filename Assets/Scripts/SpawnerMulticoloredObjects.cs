@@ -14,10 +14,13 @@ public class SpawnerMulticoloredObjects : MonoBehaviour
     
     private void OnSpawn(InputAction.CallbackContext context)
     {
+        Debug.Log("Clicked");
         if (xrRayInteractor.enabled && xrRayInteractor.TryGetCurrent3DRaycastHit(out var raycastHit, out _))
         {
-            if (raycastHit.transform.TryGetComponent(out ARPlane arPlane) && (arPlane.classification & targetPlaneClassification) != 0)
+            Debug.Log("Hit");
+            if (raycastHit.transform.TryGetComponent(out ARPlane arPlane) && arPlane.classification == targetPlaneClassification)
             {
+                Debug.Log("Spawned");
                 var hitPose = new Pose(raycastHit.point, Quaternion.LookRotation(raycastHit.normal));
 
                 var instantiate = Instantiate(objectPrefab, hitPose.position, hitPose.rotation);
@@ -29,12 +32,10 @@ public class SpawnerMulticoloredObjects : MonoBehaviour
                 return;
             }
 
-            if (raycastHit.transform.name == "SpawnedObject")
-            {
-                Destroy(raycastHit.transform.gameObject);
-
-                return;
-            }
+            // if (raycastHit.transform.name == "SpawnedObject")
+            // {
+            //     Destroy(raycastHit.transform.gameObject);
+            // }
         }
     }
     

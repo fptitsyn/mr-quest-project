@@ -2752,6 +2752,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Toggle Debug Mode",
+                    "type": "Button",
+                    "id": "24f1b1f5-fbab-4536-937f-ce48b0a08159",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -2774,6 +2783,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Switch Spawner",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "36656fc8-708e-416b-9f84-c48d7c63d041",
+                    "path": "<XRController>{LeftHand}/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle Debug Mode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
