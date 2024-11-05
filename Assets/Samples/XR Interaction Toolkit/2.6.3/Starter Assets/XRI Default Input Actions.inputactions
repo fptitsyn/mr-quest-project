@@ -2730,6 +2730,54 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Extension",
+            "id": "8478c266-2bf8-415a-933f-dc1024fb047f",
+            "actions": [
+                {
+                    "name": "Spawn Multicolored Cubes",
+                    "type": "Button",
+                    "id": "2a2ecd0d-f8c0-4e93-8230-4e33d624d4e2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Switch Spawner",
+                    "type": "PassThrough",
+                    "id": "2eae9e10-5bde-4b49-929b-21d1939dd2d6",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7118b60a-7e3e-4105-9582-040359fa3560",
+                    "path": "<XRController>{RightHand}/{TriggerButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Spawn Multicolored Cubes",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e43a6de7-9e40-4ef8-b8e5-f02545828503",
+                    "path": "<XRController>{RightHand}/{Primary2DAxis}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Switch Spawner",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
