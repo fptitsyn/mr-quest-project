@@ -52,9 +52,17 @@ namespace Audio
         private void LoadVolume()
         {
             float musicVolume = PlayerPrefs.GetFloat("musicVolume");
+            if (!audioMixer.SetFloat("Music", MathF.Log10(musicVolume) * 20))
+            {
+                Debug.LogWarning("Could not set music volume.");
+            }
             musicSlider.value = musicVolume;
 
             float sfxVolume = PlayerPrefs.GetFloat("SFXVolume");
+            if (!audioMixer.SetFloat("SFX", MathF.Log10(sfxVolume) * 20))
+            {
+                Debug.LogWarning("Could not set sfx volume.");
+            }
             sfxSlider.value = sfxVolume;
         }
     }
