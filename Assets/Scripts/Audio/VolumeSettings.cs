@@ -22,19 +22,30 @@ namespace Audio
                 SetMusicVolume();
                 SetSfxVolume();
             }
+            
+            musicSlider.onValueChanged.AddListener(delegate { SetMusicVolume(); });
+            sfxSlider.onValueChanged.AddListener(delegate { SetSfxVolume(); });
         }
 
         public void SetMusicVolume()
         {
+            AudioManager.Instance.PlaySfx("Click");
             float volume = musicSlider.value;
-            audioMixer.SetFloat("music", MathF.Log10(volume) * 20);
+            if (!audioMixer.SetFloat("Music", MathF.Log10(volume) * 20))
+            {
+                Debug.LogWarning("Could not set music volume.");
+            }
             PlayerPrefs.SetFloat("musicVolume", volume);
         }
 
         public void SetSfxVolume()
         {
+            AudioManager.Instance.PlaySfx("Click");
             float volume = sfxSlider.value;
-            audioMixer.SetFloat("SFX", MathF.Log10(volume) * 20);
+            if (!audioMixer.SetFloat("SFX", MathF.Log10(volume) * 20))
+            {
+                Debug.LogWarning("Could not set sfx volume.");
+            }
             PlayerPrefs.SetFloat("SFXVolume", volume);
         }
 
