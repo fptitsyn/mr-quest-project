@@ -1,3 +1,4 @@
+using Audio;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.ARFoundation;
@@ -20,6 +21,7 @@ public class SpawnerMulticoloredObjects : MonoBehaviour
             Debug.Log("Hit");
             if (raycastHit.transform.TryGetComponent(out ARPlane arPlane) && arPlane.classification == targetPlaneClassification)
             {
+                AudioManager.Instance.PlaySfx("Spawn");
                 Debug.Log("Spawned");
                 var hitPose = new Pose(raycastHit.point, Quaternion.LookRotation(raycastHit.normal));
 
@@ -32,10 +34,10 @@ public class SpawnerMulticoloredObjects : MonoBehaviour
                 return;
             }
 
-            // if (raycastHit.transform.name == "SpawnedObject")
-            // {
-            //     Destroy(raycastHit.transform.gameObject);
-            // }
+            if (raycastHit.transform.name == "SpawnedObject")
+            {
+                Destroy(raycastHit.transform.gameObject);
+            }
         }
     }
     

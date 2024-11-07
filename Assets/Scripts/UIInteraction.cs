@@ -23,7 +23,8 @@ public class UIInteraction : MonoBehaviour
 
     private void SpawnCapsule()
     {
-        AudioManager.Instance.PlaySfx("Click");
+        // AudioManager.Instance.PlaySfx("Click");
+        AudioManager.Instance.PlaySfx("Spawn");
         Instantiate(capsulePrefab, transform.position - transform.forward * 0.5f, Quaternion.identity);
     }
     
