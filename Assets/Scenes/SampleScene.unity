@@ -1237,7 +1237,6 @@ GameObject:
   - component: {fileID: 264828646}
   - component: {fileID: 264828645}
   - component: {fileID: 264828644}
-  - component: {fileID: 264828643}
   m_Layer: 0
   m_Name: Table
   m_TagString: Untagged
@@ -1245,20 +1244,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &264828643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 264828642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f66da7470dce8f4d821d71dd2b1d4ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_DestroyOnRemoval: 1
-  m_VertexChangedThreshold: 0.01
 --- !u!65 &264828644
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1339,7 +1324,7 @@ Transform:
   m_GameObject: {fileID: 264828642}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.73, y: 17.82, z: -57.8}
+  m_LocalPosition: {x: 7.212, y: 17.81, z: -58.63}
   m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3756,6 +3741,7 @@ GameObject:
   - component: {fileID: 1345971444}
   - component: {fileID: 1345971446}
   - component: {fileID: 1345971447}
+  - component: {fileID: 1345971448}
   m_Layer: 0
   m_Name: XR Origin (XR Rig)
   m_TagString: Untagged
@@ -3875,6 +3861,19 @@ MonoBehaviour:
     type: 3}
   isVisualisedOnStart: 1
   debugPanel: {fileID: 315590962}
+--- !u!114 &1345971448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345971439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d399ac18cfaf4127a98c8b0d7cc2837e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arPlaneManager: {fileID: 1345971446}
 --- !u!1 &1354229027
 GameObject:
   m_ObjectHideFlags: 0
