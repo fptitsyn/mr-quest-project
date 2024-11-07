@@ -2799,7 +2799,7 @@ MonoBehaviour:
     type: 3}
   xrRayInteractor: {fileID: 303754433}
   targetPlaneClassification: 1
-  objectPrefab: {fileID: 8891291319601446479, guid: a18fa6b5566c67a4fab7c0500ec583db,
+  objectPrefab: {fileID: 945707522079995676, guid: c16d4707f42f72242813adaa658b6328,
     type: 3}
 --- !u!114 &1345971446
 MonoBehaviour:
