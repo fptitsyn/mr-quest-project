@@ -1,3 +1,4 @@
+using Audio;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,11 +23,13 @@ public class UIInteraction : MonoBehaviour
 
     private void SpawnCapsule()
     {
+        AudioManager.Instance.PlaySfx("Click");
         Instantiate(capsulePrefab, transform.position - transform.forward * 0.5f, Quaternion.identity);
     }
     
     private void ResetScene()
     {
+        AudioManager.Instance.PlaySfx("Click");
         ARSession arSession = FindAnyObjectByType<ARSession>();
         bool result = (arSession.subsystem as MetaOpenXRSessionSubsystem)?.TryRequestSceneCapture() ?? false;
         Debug.Log($"Запрос на захват сцены Meta OpenXR завершен с результатом: {result}");
@@ -34,6 +37,7 @@ public class UIInteraction : MonoBehaviour
     
     private void ExitGame()
     {
+        AudioManager.Instance.PlaySfx("Click");
         #if UNITY_EDITOR
             EditorApplication.isPlaying = false;
         #else
