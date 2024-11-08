@@ -29,7 +29,6 @@ namespace Audio
 
         public void SetMusicVolume()
         {
-            AudioManager.Instance.PlaySfx("Click");
             float volume = musicSlider.value;
             if (!audioMixer.SetFloat("Music", MathF.Log10(volume) * 20))
             {
@@ -40,7 +39,6 @@ namespace Audio
 
         public void SetSfxVolume()
         {
-            AudioManager.Instance.PlaySfx("Click");
             float volume = sfxSlider.value;
             if (!audioMixer.SetFloat("SFX", MathF.Log10(volume) * 20))
             {

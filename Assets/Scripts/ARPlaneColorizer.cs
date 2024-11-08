@@ -67,8 +67,8 @@ public class ARPlaneColorizer : MonoBehaviour
     // Метод для обновления цвета материала плоскости
     private void UpdateColor()
     {
-        _meshRenderer.materials[0].color = _isVisualised ? Color.clear : _defaultColor;
-        _lineRenderer.startColor = _isVisualised ? Color.clear : Color.white;
+        _meshRenderer.materials[0].color = _isVisualised ? _defaultColor : Color.clear;
+        _lineRenderer.startColor = _isVisualised ? Color.white : Color.clear;
     }
 
     // Метод для получения цвета на основе классификации плоскости
