@@ -22,17 +22,17 @@ namespace DefaultNamespace
         {
             foreach (var plane in changes.added)
             {
-                Debug.Log(plane.name + "added");
+                Debug.Log(plane.alignment + " added");
             }
 
             foreach (var plane in changes.updated)
             {
-                Debug.Log(plane.name + "updated");
+                Debug.Log(plane.alignment + " updated");
             }
 
             foreach (var plane in changes.removed)
             {
-                Debug.Log(plane.name + "removed");
+                Debug.Log(plane.alignment + " removed");
             }
         }
     }
