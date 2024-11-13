@@ -1206,7 +1206,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1203574445}
-  - {fileID: 799403383}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &416674176
@@ -1241,10 +1240,9 @@ MonoBehaviour:
     type: 3}
   switchAction: {fileID: 3166122549845319991, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  xrRayInteractor: {fileID: 1973257931}
-  targetPlaneClassification: 2
-  objectPrefab: {fileID: 945707522079995676, guid: c16d4707f42f72242813adaa658b6328,
+  spawnOnKeyAction: {fileID: -8169399061776466393, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
+  xrRayInteractor: {fileID: 1973257931}
 --- !u!114 &416674178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1709,6 +1707,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34d431687d540e4ab7181a87b0ff987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setCharacterAction: {fileID: -5623739526802035838, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  setTreesAction: {fileID: 7912364092354893035, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
 --- !u!114 &653763377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1862,58 +1864,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726692386}
   m_CullTransparentMesh: 1
---- !u!1 &799403382
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 799403383}
-  - component: {fileID: 799403384}
-  m_Layer: 0
-  m_Name: Mesh Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &799403383
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 799403382}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 416674175}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &799403384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 799403382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 968053edfd89749c48f4ea5d444abf64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MeshPrefab: {fileID: 8172826825002158468, guid: 858cf4958c505df4193bd344d50071fb,
-    type: 3}
-  m_Density: 0.5
-  m_Normals: 1
-  m_Tangents: 0
-  m_TextureCoordinates: 0
-  m_Colors: 0
-  m_ConcurrentQueueSize: 4
 --- !u!1 &804883265
 GameObject:
   m_ObjectHideFlags: 0
@@ -5693,7 +5643,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 653763376}
         m_TargetAssemblyTypeName: Spawn.SpawnObjectPicker, Assembly-CSharp
-        m_MethodName: SetHuman
+        m_MethodName: SetCharacter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

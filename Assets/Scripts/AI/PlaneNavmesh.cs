@@ -46,7 +46,6 @@ namespace AI
                     plane.gameObject.layer = LayerMask.NameToLayer("HorizontalUp");
                     NavMeshSurface surface = plane.GetComponent<NavMeshSurface>();
                     surface.BuildNavMesh();
-                    Debug.Log("navmesh updated");
                 }
             }
 
@@ -58,7 +57,6 @@ namespace AI
                     if (surface.enabled)
                     {
                         surface.RemoveData();
-                        Debug.Log("navmesh removed");
                     }
                 }
             }

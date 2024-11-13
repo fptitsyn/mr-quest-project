@@ -1,4 +1,6 @@
 using System;
+using Spawn;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.XR.Simulation;
@@ -24,7 +26,17 @@ namespace AI
             if (_agent.isOnNavMesh)
             {
                 _animator.SetFloat(MoveSpeed, _agent.velocity.magnitude);
-                _agent.SetDestination(_playerTransform.position);
+                if (Spawner.trees.Count > 0)
+                {
+                    GameObject closestTree = GetClosestTree(transform.position);
+                    _agent.SetDestination(closestTree.transform.position);
+                    // if (_agent.remainingDistance < _agent.stoppingDistance)
+                    // {
+                    //     Debug.Log("Tree destroyed");
+                    //     Spawner.trees.Remove(closestTree);
+                    //     Destroy(closestTree);
+                    // }
+                }
             }
             
             // else
@@ -51,6 +63,32 @@ namespace AI
             //         Debug.Log("Even worse");
             //     }
             // }
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (other.gameObject.CompareTag("Tree"))
+            {
+                Spawner.trees.Remove(other.gameObject);
+                Destroy(other.gameObject);
+            }
+        }
+
+        private GameObject GetClosestTree(Vector3 position)
+        {
+            GameObject closestTree = Spawner.trees[0];
+            float minSqrDistance = Vector3.SqrMagnitude(Spawner.trees[0].transform.position - position);
+            foreach (var tree in Spawner.trees)
+            {
+                float sqrDistance = Vector3.SqrMagnitude(tree.transform.position - position);
+                if (sqrDistance < minSqrDistance)
+                {
+                    minSqrDistance = sqrDistance;
+                    closestTree = tree;
+                }
+            }
+
+            return closestTree;
         }
     }
 }

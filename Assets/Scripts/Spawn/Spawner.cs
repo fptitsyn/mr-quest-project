@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Audio;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,54 +8,63 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Spawn
 {
-    public class SpawnerMulticoloredObjects : MonoBehaviour
+    public class Spawner : MonoBehaviour
     {
         [SerializeField] private InputActionReference spawnAction;
         [SerializeField] private InputActionReference switchAction;
+        [SerializeField] private InputActionReference spawnOnKeyAction;
         [SerializeField] private XRRayInteractor xrRayInteractor;
         // [SerializeField] private PlaneClassification targetPlaneClassification;
         // [SerializeField] private GameObject objectPrefab;
     
+        public static List<GameObject> trees = new ();
+        
         private void Spawn(InputAction.CallbackContext context)
         {
             if (xrRayInteractor.enabled && xrRayInteractor.TryGetCurrent3DRaycastHit(out var raycastHit, out _))
             {
-            #if UNITY_EDITOR
-                if (raycastHit.transform.TryGetComponent(out ARPlane arPlane) && arPlane.alignment == PlaneAlignment.HorizontalUp)
+                if (raycastHit.transform.TryGetComponent(out ARPlane arPlane) && arPlane.classification == SpawnObjectPicker.targetPlaneClassification)
                 {
                     AudioManager.Instance.PlaySfx("Spawn");
                     var hitPose = new Pose(raycastHit.point, Quaternion.LookRotation(raycastHit.normal));
 
                     var instantiate = Instantiate(SpawnObjectPicker.pickedObject, hitPose.position, hitPose.rotation);
                     // instantiate.name = "SpawnedObject";
-
+                    
                     instantiate.AddComponent<ARAnchor>();
-
+                    if (instantiate.CompareTag("Tree"))
+                    {
+                        Debug.Log("added tree");
+                        trees.Add(instantiate);
+                    }
                     return;
                 }
-            #else 
-            if (raycastHit.transform.TryGetComponent(out ARPlane arPlane) && arPlane.classification == SpawnObjectPicker.targetPlaneClassification)
-                {
-                    AudioManager.Instance.PlaySfx("Spawn");
-                    var hitPose = new Pose(raycastHit.point, Quaternion.LookRotation(raycastHit.normal));
-
-                    var instantiate = Instantiate(SpawnObjectPicker.pickedObject, hitPose.position, hitPose.rotation);
-                    // instantiate.name = "SpawnedObject";
-
-                    instantiate.AddComponent<ARAnchor>();
-
-                    return;
-                }
-            #endif
                 // if (raycastHit.transform.name == "SpawnedObject")
                 // {
                 //     Destroy(raycastHit.transform.gameObject);
                 // }
             }
         }
-    
+
+        private void SpawnOnKey(InputAction.CallbackContext context)
+        {
+            AudioManager.Instance.PlaySfx("Spawn");
+            GameObject player = GameObject.Find("SimulationCamera");
+            var instantiate = Instantiate(SpawnObjectPicker.pickedObject, player.transform.position + Vector3.down * 3, Quaternion.identity);
+            // instantiate.name = "SpawnedObject";
+            if (instantiate.CompareTag("Tree"))
+            {
+                Debug.Log("added tree");
+                trees.Add(instantiate);
+            }
+            instantiate.AddComponent<ARAnchor>();
+        }
+        
         private void OnEnable()
         {
+            #if UNITY_EDITOR
+            spawnOnKeyAction.action.performed += SpawnOnKey;
+            #endif
             spawnAction.action.Enable();
             spawnAction.action.performed += Spawn;
             switchAction.action.Enable();
@@ -62,6 +72,9 @@ namespace Spawn
 
         private void OnDisable()
         {
+            #if UNITY_EDITOR
+            spawnOnKeyAction.action.performed += SpawnOnKey;
+            #endif
             spawnAction.action.Disable();
             spawnAction.action.performed -= Spawn;
             switchAction.action.Disable();

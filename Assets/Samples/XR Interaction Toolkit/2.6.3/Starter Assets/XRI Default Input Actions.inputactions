@@ -2761,6 +2761,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Spawn on current pos",
+                    "type": "Button",
+                    "id": "1c07deac-4178-4388-9f39-1d1cf48e5f4d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Set Character",
+                    "type": "Button",
+                    "id": "5c75e13f-6f50-47c3-94fb-957ea745ebe8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Set Trees",
+                    "type": "Button",
+                    "id": "ca93c672-810d-462b-a626-250e17031356",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -2794,6 +2821,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Toggle Debug Mode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "364ea931-65d1-453f-ab87-dd2f2e7ba2ab",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle Debug Mode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f316bcab-8aae-41e2-a054-aed47a58726a",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Spawn on current pos",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dc34ba53-288b-416c-97a4-f59fe9d17b88",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Set Character",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9048e391-7a4d-412b-b96c-fd2bc2cd0309",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Set Trees",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
