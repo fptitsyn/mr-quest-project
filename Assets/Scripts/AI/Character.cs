@@ -7,6 +7,7 @@ namespace AI
 {
     public class Character : MonoBehaviour
     {
+        private static readonly int MoveSpeed = Animator.StringToHash("MoveSpeed");
         private NavMeshAgent _agent;
         private Transform _playerTransform;
         private Animator _animator;
@@ -22,6 +23,7 @@ namespace AI
         {
             if (_agent.isOnNavMesh)
             {
+                _animator.SetFloat(MoveSpeed, _agent.velocity.magnitude);
                 _agent.SetDestination(_playerTransform.position);
             }
             
