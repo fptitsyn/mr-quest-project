@@ -8,7 +8,7 @@ using UnityEngine.XR.ARSubsystems;
 
 namespace AI
 {
-    public class ARPlaneDetector : MonoBehaviour
+    public class PlaneNavmesh : MonoBehaviour
     {
         [SerializeField] private ARPlaneManager arPlaneManager;
         private GameObject _player;
