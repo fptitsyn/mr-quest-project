@@ -427,7 +427,7 @@ PrefabInstance:
     - target: {fileID: 5360623503382567618, guid: 91402e7aa005d52449cdcffff5b5eb91,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.003540039
+      value: 0.000061035156
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1067,7 +1067,7 @@ Transform:
   m_GameObject: {fileID: 416674171}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.707502, y: 28.557384, z: 2.6292496}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1942,7 +1942,7 @@ Transform:
   m_GameObject: {fileID: 850465220}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.8850565, y: 30.88, z: 11.45}
+  m_LocalPosition: {x: -0.822446, y: 2.32262, z: 8.82075}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2605,7 +2605,7 @@ Transform:
   m_GameObject: {fileID: 1203574444}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.1176, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5644,17 +5644,17 @@ PrefabInstance:
     - target: {fileID: 7568492285457866210, guid: 12727f58d5cf1344caa2ad293a56e302,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.9865694
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7568492285457866210, guid: 12727f58d5cf1344caa2ad293a56e302,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17.288162
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7568492285457866210, guid: 12727f58d5cf1344caa2ad293a56e302,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -46.129948
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7568492285457866210, guid: 12727f58d5cf1344caa2ad293a56e302,
         type: 3}
@@ -5705,7 +5705,7 @@ SceneRoots:
   - {fileID: 1486277217}
   - {fileID: 206086700}
   - {fileID: 804883268}
-  - {fileID: 850465223}
   - {fileID: 6738718100243539583}
+  - {fileID: 850465223}
   - {fileID: 416674175}
   - {fileID: 17008883}

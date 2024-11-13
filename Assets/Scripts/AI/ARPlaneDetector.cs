@@ -28,7 +28,7 @@ namespace AI
             arPlaneManager.planesChanged -= OnPlanesChanged;
         }
 
-        public void OnPlanesChanged(ARPlanesChangedEventArgs changes)
+        private void OnPlanesChanged(ARPlanesChangedEventArgs changes)
         {
             foreach (var plane in changes.added)
             {
