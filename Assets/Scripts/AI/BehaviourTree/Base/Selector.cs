@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 
-namespace AI.BehaviourTree
+namespace AI.BehaviourTree.Base
 {
     public class Selector : Node
     {
         public Selector() : base() { }
         public Selector(List<Node> children) : base(children) { }
-        
+
         public override NodeState Evaluate()
         {
             foreach (Node node in children)
@@ -16,18 +16,17 @@ namespace AI.BehaviourTree
                     case NodeState.Failure:
                         continue;
                     case NodeState.Success:
-                        state = NodeState.Success;
-                        return state;
+                        _state = NodeState.Success;
+                        return _state;
                     case NodeState.Running:
-                        state = NodeState.Running;
-                        return state;
+                        _state = NodeState.Running;
+                        return _state;
                     default:
                         continue;
                 }
             }
-            
-            state = NodeState.Failure;
-            return state;
+            _state = NodeState.Failure;
+            return _state;
         }
     }
 }
