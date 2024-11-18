@@ -8,20 +8,19 @@ using UnityEngine.AI;
 using UnityEngine.XR.Simulation;
 using Sequence = AI.BehaviourTree.Base.Sequence;
 using Timer = AI.BehaviourTree.Base.Timer;
-using Tree = AI.BehaviourTree.Base.Tree;
 
 namespace AI
 {
-    using Tree = BehaviourTree.Base.Tree;
-
-    public class CharacterAI : Tree
+    public class CharacterAI : BehaviourTree.Base.BehaviourTree
     {
-        private static readonly int MoveSpeed = Animator.StringToHash("MoveSpeed");
+        [SerializeField] private GameObject axeObject;
+        
         private NavMeshAgent _agent;
         private Transform _playerTransform;
         private Animator _animator;
-        public static int CurrentWoodInStock = 0;
+        public static float CurrentWoodInStock = 0f;
 
+        private readonly float _searchThreshold = 0.3f;
         private Node _rootNode;
         
         private void Start()
@@ -36,8 +35,10 @@ namespace AI
         {
             _agent = GetComponent<NavMeshAgent>();
             _animator = GetComponent<Animator>();
-
+            
             Node root = new Selector();
+            // root.SetData("House", new object());
+            // CurrentWoodInStock = 10;
             root.SetChildren(new List<Node>
             {
                 new CheckHasHouse(),
@@ -49,16 +50,13 @@ namespace AI
                 
                 // collect wood
                 new Sequence(new List<Node> {
-                    new TaskFindTarget(transform.position),
+                    new TaskFindTarget(transform),
                     // has target tree
                     new CheckHasTarget(),
-                    // new TaskFindTarget(transform.position),
-                    new TaskWalk(_agent, transform.position),
-                    new Timer(2.0f, new List<Node>
-                    {
-                        new TaskCollect(_animator)
-                    })
                     // go collect this tree
+                    new TaskWalk(_agent, _animator, transform, _searchThreshold),
+                    new CheckTargetInRange(transform, _searchThreshold),
+                    new TaskCollect(_animator, axeObject)
                 })
             }, forceRoot: true);
             
@@ -121,9 +119,9 @@ namespace AI
 
         private GameObject GetClosestTree(Vector3 position)
         {
-            GameObject closestTree = Spawner.trees[0];
-            float minSqrDistance = Vector3.SqrMagnitude(Spawner.trees[0].transform.position - position);
-            foreach (var tree in Spawner.trees)
+            GameObject closestTree = Spawner.Trees[0];
+            float minSqrDistance = Vector3.SqrMagnitude(Spawner.Trees[0].transform.position - position);
+            foreach (var tree in Spawner.Trees)
             {
                 float sqrDistance = Vector3.SqrMagnitude(tree.transform.position - position);
                 if (sqrDistance < minSqrDistance)

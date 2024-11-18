@@ -4,10 +4,12 @@ namespace AI.BehaviourTree
 {
     public class CheckStock : Node
     {
+        private readonly float _houseCost = 150f;
+        
         public override NodeState Evaluate()
         {
-            int wood = CharacterAI.CurrentWoodInStock;
-            if (wood >= 10)
+            float wood = CharacterAI.CurrentWoodInStock;
+            if (wood >= _houseCost)
             {
                 return NodeState.Success;
             }

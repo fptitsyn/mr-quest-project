@@ -6,22 +6,22 @@ namespace AI.BehaviourTree
 {
     public class TaskFindTarget : Node
     {
-        private Vector3 _position;
+        private Transform _transform;
 
-        public TaskFindTarget(Vector3 position)
+        public TaskFindTarget(Transform transform)
         {
-            _position = position;
+            _transform = transform;
         }
         
         public override NodeState Evaluate()
         {
-            if (Spawner.trees.Count == 0)
+            if (Spawner.Trees.Count == 0)
             {
                 Debug.Log("no trees found");
                 return NodeState.Failure;
             }
 
-            GameObject closestTree = GetClosestTree(_position);
+            GameObject closestTree = GetClosestTree(_transform.position);
             Root.SetData("Target", closestTree);
             Debug.Log("tree found and set");
             return NodeState.Success;
@@ -29,9 +29,9 @@ namespace AI.BehaviourTree
         
         private GameObject GetClosestTree(Vector3 position)
         {
-            GameObject closestTree = Spawner.trees[0];
-            float minSqrDistance = Vector3.SqrMagnitude(Spawner.trees[0].transform.position - position);
-            foreach (var tree in Spawner.trees)
+            GameObject closestTree = Spawner.Trees[0];
+            float minSqrDistance = Vector3.SqrMagnitude(Spawner.Trees[0].transform.position - position);
+            foreach (var tree in Spawner.Trees)
             {
                 float sqrDistance = Vector3.SqrMagnitude(tree.transform.position - position);
                 if (sqrDistance < minSqrDistance)

@@ -6,19 +6,23 @@ namespace AI.BehaviourTree
 {
     public class TaskWalk : Node
     {
+        private static readonly int MoveSpeed = Animator.StringToHash("MoveSpeed");
         private NavMeshAgent _agent;
-        private Vector3 _position;
+        private Animator _animator;
+        private Transform _transform;
+        private float _threshold;
 
-        public TaskWalk(NavMeshAgent navMeshAgent, Vector3 position)
+        public TaskWalk(NavMeshAgent navMeshAgent, Animator animator, Transform transform, float threshold)
         {
             _agent = navMeshAgent;
-            _position = position;
+            _animator = animator;
+            _transform = transform;
+            _threshold = threshold;
         }
         
         public override NodeState Evaluate()
         {
-            Debug.Log("walking");
-            // _state = NodeState.Running;
+            _state = NodeState.Running;
 
             if (!_agent.isOnNavMesh)
             {
@@ -28,17 +32,22 @@ namespace AI.BehaviourTree
             {
                 GameObject target = (GameObject)Root.GetData("Target");
                 _agent.SetDestination(target.transform.position);
+                _agent.isStopped = false;
+                Debug.Log("walking");
+                _animator.SetFloat(MoveSpeed, _agent.velocity.magnitude);
                 
-                if ((_position - target.transform.position).sqrMagnitude < 0.05f)
+                if (Vector3.SqrMagnitude(_transform.position - target.transform.position) < _threshold)
                 {
+                    _agent.isStopped = true;
+                    _animator.SetFloat(MoveSpeed, 0f);
                     Debug.Log("дошёл ура");
                     _state = NodeState.Success;
                 }
-                else
-                {
-                    Debug.Log("не");
-                    _state = NodeState.Running;
-                }
+                // else
+                // {
+                //     Debug.Log("не");
+                //     _state = NodeState.Running;
+                // }
             }
             
             return _state;

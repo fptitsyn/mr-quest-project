@@ -17,7 +17,7 @@ namespace Spawn
         // [SerializeField] private PlaneClassification targetPlaneClassification;
         // [SerializeField] private GameObject objectPrefab;
     
-        public static List<GameObject> trees = new ();
+        public static List<GameObject> Trees = new ();
         
         private void Spawn(InputAction.CallbackContext context)
         {
@@ -35,7 +35,7 @@ namespace Spawn
                     if (instantiate.CompareTag("Tree"))
                     {
                         Debug.Log("added tree");
-                        trees.Add(instantiate);
+                        // Trees.Add(instantiate);
                     }
                     return;
                 }
@@ -55,7 +55,7 @@ namespace Spawn
             if (instantiate.CompareTag("Tree"))
             {
                 Debug.Log("added tree");
-                trees.Add(instantiate);
+                // trees.Add(instantiate);
             }
             instantiate.AddComponent<ARAnchor>();
         }
