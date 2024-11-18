@@ -39,6 +39,10 @@ namespace AI
                 {
                     new CheckStock(),
                     // build house
+                    new Timer(5.0f, new List<Node>
+                    {
+                        new TaskBuildHouse(transform)
+                    })
                 }),
                 
                 // collect wood
