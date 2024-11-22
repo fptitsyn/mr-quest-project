@@ -5,7 +5,7 @@ namespace AI.BehaviourTree
 {
     public class TaskBuildHouse : Node
     {
-        private const float houseWoodCost = 150f;
+        private const float HouseWoodCost = 150f;
         private Transform _transform;
 
         public TaskBuildHouse(Transform transform)
@@ -17,10 +17,11 @@ namespace AI.BehaviourTree
         {
             int r = Random.Range(1, 4);
             GameObject housePrefab = Resources.Load($"Prefabs/Buildings/House{r}") as GameObject;
-            if (CharacterAI.CurrentWoodInStock >= houseWoodCost)
+            if (CharacterAI.CurrentWoodInStock >= HouseWoodCost)
             {
-                CharacterAI.CurrentWoodInStock -= houseWoodCost;
-                Object.Instantiate(housePrefab, _transform.position, Quaternion.identity);
+                CharacterAI.CurrentWoodInStock -= HouseWoodCost;
+                GameObject house = Object.Instantiate(housePrefab, _transform.position, Quaternion.identity);
+                Root.SetData("House", house);
                 _state = NodeState.Success;
             }
             else

@@ -16,11 +16,15 @@ namespace AI.BehaviourTree
         private float _choppingCooldown = 3.15f; // Approximate chopping animation length
 
         private GameObject _axe;
+        private AudioSource _audioSource;
         
-        public TaskCollect(Animator animator, GameObject axe)
+        public TaskCollect(Animator animator, GameObject axe, AudioSource audioSource)
         {
             _animator = animator;
             _axe = axe;
+            _audioSource = audioSource;
+            _audioSource.clip = Resources.Load<AudioClip>("Audio/SFX/chop");
+            _audioSource.loop = false;
             _collectAmount = 10f;
         }
         
@@ -32,6 +36,7 @@ namespace AI.BehaviourTree
             _axe.SetActive(true);
             if (_canChop)
             {
+                _audioSource.Play();
                 _canChop = false;
                 
                 Debug.Log("Collecting");

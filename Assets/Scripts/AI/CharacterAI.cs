@@ -10,6 +10,9 @@ namespace AI
     public class CharacterAI : BehaviourTree.Base.BehaviourTree
     {
         [SerializeField] private GameObject axeObject;
+        [SerializeField] private GameObject hammerObject;
+        
+        [SerializeField] private AudioSource audioSource;
         
         private NavMeshAgent _agent;
         private Transform _playerTransform;
@@ -42,7 +45,7 @@ namespace AI
                     new Timer(5.0f, new List<Node>
                     {
                         new TaskBuildHouse(transform)
-                    })
+                    }, _animator, hammerObject, audioSource)
                 }),
                 
                 // collect wood
@@ -53,7 +56,7 @@ namespace AI
                     // go collect this tree
                     new TaskWalk(_agent, _animator, transform, _searchThreshold),
                     new CheckTargetInRange(transform, _searchThreshold),
-                    new TaskCollect(_animator, axeObject)
+                    new TaskCollect(_animator, axeObject, audioSource)
                 })
             }, forceRoot: true);
             
