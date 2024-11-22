@@ -19,7 +19,7 @@ namespace AI
         private Animator _animator;
         public static float CurrentWoodInStock = 0f;
 
-        private readonly float _searchThreshold = 0.3f;
+        private const float SearchThreshold = 0.3f;
         private Node _rootNode;
         
         private void Start()
@@ -33,15 +33,16 @@ namespace AI
             _animator = GetComponent<Animator>();
             
             Node root = new Selector();
-            // root.SetData("House", new object());
-            // CurrentWoodInStock = 10;
+            
             root.SetChildren(new List<Node>
             {
                 new CheckHasHouse(),
                 new Sequence(new List<Node>
                 {
                     new CheckStock(),
+                    // new CheckHasVillage(),
                     // go to village
+                    
                     // build house
                     new Timer(5.0f, new List<Node>
                     {
@@ -55,8 +56,8 @@ namespace AI
                     // has target tree
                     new CheckHasTarget(),
                     // go collect this tree
-                    new TaskWalk(_agent, _animator, transform, _searchThreshold),
-                    new CheckTargetInRange(transform, _searchThreshold),
+                    new TaskWalk(_agent, _animator, transform, SearchThreshold),
+                    new CheckTargetInRange(transform, SearchThreshold),
                     new TaskCollect(_animator, axeObject, audioSource)
                 })
             }, forceRoot: true);

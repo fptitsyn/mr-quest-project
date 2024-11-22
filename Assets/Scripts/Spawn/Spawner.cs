@@ -40,12 +40,7 @@ namespace Spawn
                         Debug.Log("added tree");
                         Trees.Add(instantiate);
                     }
-                    return;
                 }
-                // if (raycastHit.transform.name == "SpawnedObject")
-                // {
-                //     Destroy(raycastHit.transform.gameObject);
-                // }
             }
         }
 

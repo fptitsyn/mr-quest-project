@@ -39,33 +39,6 @@ namespace Spawn
             Debug.Log("tree");
         }
 
-        // private void OnSetCharacter(InputAction.CallbackContext context)
-        // {
-        //     pickedObject = Resources.Load("Prefabs/Characters/Male1") as GameObject;
-        // }
-        //
-        // private void OnSetTrees(InputAction.CallbackContext context)
-        // {
-        //     int r = Random.Range(1, 5);
-        //     pickedObject = Resources.Load($"Prefabs/Trees/Tree{r}") as GameObject;
-        // }
-        
-        // private void OnEnable()
-        // {
-        //     #if UNITY_EDITOR
-        //         setCharacterAction.action.triggered += OnSetCharacter;
-        //         setTreesAction.action.performed += OnSetTrees;
-        //     #endif
-        // }
-        //
-        // private void OnDisable()
-        // {
-        //     #if UNITY_EDITOR
-        //         setCharacterAction.action.performed -= OnSetCharacter;
-        //         setTreesAction.action.performed -= OnSetTrees;
-        //     #endif
-        // }
-
         private void Update()
         {
             HandleInput();
