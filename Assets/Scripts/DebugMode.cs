@@ -61,7 +61,7 @@ public class DebugMode : MonoBehaviour
         {
             if (arPlane.TryGetComponent(out ARPlaneColorizer arPlaneColorizer))
             {
-                arPlaneColorizer.IsVisualised = _isVisualised; // Устанавливаем состояние визуализации
+                arPlaneColorizer.isVisualise = _isVisualised; // Устанавливаем состояние визуализации
             }
         }
     }

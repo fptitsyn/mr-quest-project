@@ -7,18 +7,18 @@ using UnityEngine.XR.ARSubsystems;
 public class ARPlaneColorizer : MonoBehaviour
 {
     // Свойство для управления визуализацией плоскости
-    public bool IsVisualised
+    public bool isVisualise
     {
-        get => _isVisualised;
+        get => _isVisualise;
         set
         {
-            _isVisualised = value;
+            _isVisualise = value;
             UpdateColor(); // Обновляем цвет при изменении значения
         }
     }
 
-    private const float DefaultColorAlpha = 0.25f; // Прозрачность цвета по умолчанию
-    private bool _isVisualised; // Внутреннее поле для свойства isVisualise
+    private const float DEFAULT_COLOR_ALPHA = 0.25f; // Прозрачность цвета по умолчанию
+    private bool _isVisualise; // Внутреннее поле для свойства isVisualise
     private Color _defaultColor; // Цвет по умолчанию, определенный на основе классификации
 
     private ARPlane _arPlane; // Компонент ARPlane
@@ -40,7 +40,7 @@ public class ARPlaneColorizer : MonoBehaviour
 
         // Получаем цвет материала по классификации
         _defaultColor = GetColorByClassification(_arPlane.classification);
-        _defaultColor.a = DefaultColorAlpha; // Устанавливаем прозрачность цвета
+        _defaultColor.a = DEFAULT_COLOR_ALPHA; // Устанавливаем прозрачность цвета
 
         // Устанавливаем начальный цвет
         UpdateColor();
@@ -67,8 +67,8 @@ public class ARPlaneColorizer : MonoBehaviour
     // Метод для обновления цвета материала плоскости
     private void UpdateColor()
     {
-        _meshRenderer.materials[0].color = _isVisualised ? _defaultColor : Color.clear;
-        _lineRenderer.startColor = _isVisualised ? Color.white : Color.clear;
+        _meshRenderer.materials[0].color = _isVisualise ? Color.clear : _defaultColor;
+        _lineRenderer.startColor = _isVisualise ? Color.clear : Color.white;
     }
 
     // Метод для получения цвета на основе классификации плоскости
