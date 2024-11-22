@@ -21,10 +21,13 @@ namespace Spawn
         
         private void Spawn(InputAction.CallbackContext context)
         {
+            Debug.Log("Spawning");
             if (xrRayInteractor.enabled && xrRayInteractor.TryGetCurrent3DRaycastHit(out var raycastHit, out _))
             {
+                Debug.Log("Raycast Hit");
                 if (raycastHit.transform.TryGetComponent(out ARPlane arPlane) && arPlane.classification == SpawnObjectPicker.TargetPlaneClassification)
                 {
+                    Debug.Log("Target Plane");
                     AudioManager.Instance.PlaySfx("Spawn");
                     var hitPose = new Pose(raycastHit.point, Quaternion.LookRotation(raycastHit.normal));
 
@@ -35,7 +38,7 @@ namespace Spawn
                     if (instantiate.CompareTag("Tree"))
                     {
                         Debug.Log("added tree");
-                        // Trees.Add(instantiate);
+                        Trees.Add(instantiate);
                     }
                     return;
                 }

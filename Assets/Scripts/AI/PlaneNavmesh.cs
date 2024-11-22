@@ -11,11 +11,17 @@ namespace AI
     public class PlaneNavmesh : MonoBehaviour
     {
         [SerializeField] private ARPlaneManager arPlaneManager;
-        private GameObject _player;
+        // private GameObject _player;
 
         private void Start()
         {
-            _player = GameObject.Find("SimulationCamera");
+            if (LoaderUtility
+                    .GetActiveLoader()?
+                    .GetLoadedSubsystem<XRPlaneSubsystem>() != null)
+            {
+                Debug.Log("Planes are working");
+                // XRPlaneSubsystem was loaded. The platform supports plane detection.
+            }
         }
 
         private void OnEnable()
@@ -30,19 +36,25 @@ namespace AI
 
         private void OnPlanesChanged(ARPlanesChangedEventArgs changes)
         {
+            Debug.Log("plane added");
             foreach (var plane in changes.added)
             {
                 if (plane.alignment == PlaneAlignment.HorizontalUp)
                 {
+                    Debug.Log("horizontalup plane added");
                     plane.gameObject.layer = LayerMask.NameToLayer("HorizontalUp");
                     plane.GetComponent<NavMeshSurface>().enabled = true;
+                    NavMeshSurface surface = plane.GetComponent<NavMeshSurface>();
+                    surface.BuildNavMesh();
                 }
             }
 
             foreach (var plane in changes.updated)
             {
+                Debug.Log("plane updated");
                 if (plane.alignment == PlaneAlignment.HorizontalUp)
                 {
+                    Debug.Log("horizontalup plane updated");
                     plane.gameObject.layer = LayerMask.NameToLayer("HorizontalUp");
                     NavMeshSurface surface = plane.GetComponent<NavMeshSurface>();
                     surface.BuildNavMesh();

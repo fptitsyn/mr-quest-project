@@ -2806,7 +2806,7 @@
                     "path": "<XRController>{RightHand}/{TriggerButton}",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Generic XR Controller",
                     "action": "Spawn Multicolored Cubes",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -2817,7 +2817,7 @@
                     "path": "<XRController>{RightHand}/{Primary2DAxis}",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Generic XR Controller",
                     "action": "Switch Spawner",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -2868,11 +2868,33 @@
                 },
                 {
                     "name": "",
+                    "id": "3c54ce35-710d-401e-b791-07c9d7445599",
+                    "path": "<OculusTouchController>/thumbstick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Set Character",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "9048e391-7a4d-412b-b96c-fd2bc2cd0309",
                     "path": "<Keyboard>/t",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
+                    "action": "Set Trees",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a8ac6ae6-a989-434e-abba-3517290c9dbb",
+                    "path": "<OculusTouchController>/thumbstick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
                     "action": "Set Trees",
                     "isComposite": false,
                     "isPartOfComposite": false

@@ -28,6 +28,7 @@ namespace Spawn
         {
             PickedObject = Resources.Load("Prefabs/Characters/Male1") as GameObject;
             TargetPlaneClassification = PlaneClassification.Table;
+            Debug.Log("character");
         }
         
         public void SetTrees()
@@ -35,6 +36,7 @@ namespace Spawn
             int r = Random.Range(1, 5);
             PickedObject = Resources.Load($"Prefabs/Trees/Tree{r}") as GameObject;
             TargetPlaneClassification = PlaneClassification.Floor;
+            Debug.Log("tree");
         }
 
         // private void OnSetCharacter(InputAction.CallbackContext context)
