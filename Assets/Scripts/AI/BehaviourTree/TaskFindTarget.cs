@@ -17,13 +17,11 @@ namespace AI.BehaviourTree
         {
             if (Spawner.Trees.Count == 0)
             {
-                Debug.Log("no trees found");
                 return NodeState.Failure;
             }
 
             GameObject closestTree = GetClosestTree(_transform.position);
             Root.SetData("Target", closestTree);
-            Debug.Log("tree found and set");
             return NodeState.Success;
         }
         

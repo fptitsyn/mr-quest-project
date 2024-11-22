@@ -41,6 +41,7 @@ namespace AI
                 new Sequence(new List<Node>
                 {
                     new CheckStock(),
+                    // go to village
                     // build house
                     new Timer(5.0f, new List<Node>
                     {

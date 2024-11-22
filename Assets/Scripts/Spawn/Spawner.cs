@@ -23,12 +23,12 @@ namespace Spawn
         {
             if (xrRayInteractor.enabled && xrRayInteractor.TryGetCurrent3DRaycastHit(out var raycastHit, out _))
             {
-                if (raycastHit.transform.TryGetComponent(out ARPlane arPlane) && arPlane.classification == SpawnObjectPicker.targetPlaneClassification)
+                if (raycastHit.transform.TryGetComponent(out ARPlane arPlane) && arPlane.classification == SpawnObjectPicker.TargetPlaneClassification)
                 {
                     AudioManager.Instance.PlaySfx("Spawn");
                     var hitPose = new Pose(raycastHit.point, Quaternion.LookRotation(raycastHit.normal));
 
-                    var instantiate = Instantiate(SpawnObjectPicker.pickedObject, hitPose.position, hitPose.rotation);
+                    var instantiate = Instantiate(SpawnObjectPicker.PickedObject, hitPose.position, hitPose.rotation);
                     // instantiate.name = "SpawnedObject";
                     
                     instantiate.AddComponent<ARAnchor>();
@@ -50,7 +50,7 @@ namespace Spawn
         {
             AudioManager.Instance.PlaySfx("Spawn");
             GameObject player = GameObject.Find("SimulationCamera");
-            var instantiate = Instantiate(SpawnObjectPicker.pickedObject, player.transform.position + Vector3.down * 3, Quaternion.identity);
+            var instantiate = Instantiate(SpawnObjectPicker.PickedObject, player.transform.position + Vector3.down * 3, Quaternion.identity);
             // instantiate.name = "SpawnedObject";
             if (instantiate.CompareTag("Tree"))
             {

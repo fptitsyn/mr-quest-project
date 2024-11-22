@@ -8,54 +8,78 @@ namespace Spawn
 {
     public class SpawnObjectPicker : MonoBehaviour
     {
-        public static GameObject pickedObject;
-        public static PlaneClassification targetPlaneClassification;
-        [SerializeField] private InputActionReference setCharacterAction;
-        [SerializeField] private InputActionReference setTreesAction;
+        [SerializeField] private InputActionAsset actions;
+        
+        public static GameObject PickedObject;
+        public static PlaneClassification TargetPlaneClassification;
+        
+        private InputAction _setCharacterAction;
+        private InputAction _setTreesAction;
         
         private void Start()
         {
             SetCharacter();
+            
+            _setCharacterAction = actions.FindAction("Set Character", true);
+            _setTreesAction = actions.FindAction("Set Trees", true);
         }
 
         public void SetCharacter()
         {
-            pickedObject = Resources.Load("Prefabs/Characters/Male1") as GameObject;
-            targetPlaneClassification = PlaneClassification.Table;
+            PickedObject = Resources.Load("Prefabs/Characters/Male1") as GameObject;
+            TargetPlaneClassification = PlaneClassification.Table;
         }
         
         public void SetTrees()
         {
             int r = Random.Range(1, 5);
-            pickedObject = Resources.Load($"Prefabs/Trees/Tree{r}") as GameObject;
-            targetPlaneClassification = PlaneClassification.Floor;
+            PickedObject = Resources.Load($"Prefabs/Trees/Tree{r}") as GameObject;
+            TargetPlaneClassification = PlaneClassification.Floor;
         }
 
-        private void OnSetCharacter(InputAction.CallbackContext context)
-        {
-            pickedObject = Resources.Load("Prefabs/Characters/Male1") as GameObject;
-        }
+        // private void OnSetCharacter(InputAction.CallbackContext context)
+        // {
+        //     pickedObject = Resources.Load("Prefabs/Characters/Male1") as GameObject;
+        // }
+        //
+        // private void OnSetTrees(InputAction.CallbackContext context)
+        // {
+        //     int r = Random.Range(1, 5);
+        //     pickedObject = Resources.Load($"Prefabs/Trees/Tree{r}") as GameObject;
+        // }
         
-        private void OnSetTrees(InputAction.CallbackContext context)
+        // private void OnEnable()
+        // {
+        //     #if UNITY_EDITOR
+        //         setCharacterAction.action.triggered += OnSetCharacter;
+        //         setTreesAction.action.performed += OnSetTrees;
+        //     #endif
+        // }
+        //
+        // private void OnDisable()
+        // {
+        //     #if UNITY_EDITOR
+        //         setCharacterAction.action.performed -= OnSetCharacter;
+        //         setTreesAction.action.performed -= OnSetTrees;
+        //     #endif
+        // }
+
+        private void Update()
         {
-            int r = Random.Range(1, 5);
-            pickedObject = Resources.Load($"Prefabs/Trees/Tree{r}") as GameObject;
-        }
-        
-        private void OnEnable()
-        {
-            #if UNITY_EDITOR
-                setCharacterAction.action.performed += OnSetCharacter;
-                setTreesAction.action.performed += OnSetTrees;
-            #endif
+            HandleInput();
         }
 
-        private void OnDisable()
+        private void HandleInput()
         {
-            #if UNITY_EDITOR
-                setCharacterAction.action.performed -= OnSetCharacter;
-                setTreesAction.action.performed -= OnSetTrees;
-            #endif
+            if (_setCharacterAction.triggered)
+            {
+                SetCharacter();
+            }
+
+            if (_setTreesAction.triggered)
+            {
+                SetTrees();
+            }
         }
     }
 }

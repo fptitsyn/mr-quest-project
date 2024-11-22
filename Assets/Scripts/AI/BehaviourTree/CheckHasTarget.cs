@@ -7,7 +7,6 @@ namespace AI.BehaviourTree
     {
         public override NodeState Evaluate()
         {
-            Debug.Log("CheckHasTarget");
             bool hasTarget = Root.GetData("Target") != null;
             _state = hasTarget ? NodeState.Success : NodeState.Failure;
             return _state;
