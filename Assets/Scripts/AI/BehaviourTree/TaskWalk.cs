@@ -24,17 +24,18 @@ namespace AI.BehaviourTree
         {
             _state = NodeState.Running;
 
-            if (!_agent.isOnNavMesh)
-            {
-                _state = NodeState.Failure;
-            }
-            else
+            // if (!_agent.isOnNavMesh)
+            // {
+            //     Debug.LogWarning("not on navmesh");
+            //     _state = NodeState.Failure;
+            // }
+            // else
             {
                 GameObject target = (GameObject)Root.GetData("Target");
                 _agent.SetDestination(target.transform.position);
                 _agent.isStopped = false;
-                Debug.Log("walking");
                 _animator.SetFloat(MoveSpeed, _agent.velocity.magnitude);
+                _agent.updatePosition = true;
                 
                 if (Vector3.SqrMagnitude(_transform.position - target.transform.position) < _threshold)
                 {

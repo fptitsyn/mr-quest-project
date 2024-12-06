@@ -19,7 +19,7 @@ namespace AI
         private Animator _animator;
         public static float CurrentWoodInStock = 0f;
 
-        private const float SearchThreshold = 0.3f;
+        private const float SearchThreshold = 0.07f;
         private Node _rootNode;
         
         private void Start()

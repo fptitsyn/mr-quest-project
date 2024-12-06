@@ -5,7 +5,7 @@ namespace AI.BehaviourTree
 {
     public class TaskBuildHouse : Node
     {
-        private const float HouseWoodCost = 150f;
+        private const float HouseWoodCost = 120f;
         private Transform _transform;
 
         public TaskBuildHouse(Transform transform)

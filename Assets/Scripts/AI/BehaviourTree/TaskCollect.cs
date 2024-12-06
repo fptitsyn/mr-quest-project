@@ -13,7 +13,7 @@ namespace AI.BehaviourTree
         
         private bool _canChop;
         private float _timer;
-        private float _choppingCooldown = 3.15f; // Approximate chopping animation length
+        private float _choppingCooldown = 2f; // Approximate chopping animation length
 
         private GameObject _axe;
         private AudioSource _audioSource;
@@ -25,7 +25,7 @@ namespace AI.BehaviourTree
             _audioSource = audioSource;
             _audioSource.clip = Resources.Load<AudioClip>("Audio/SFX/chop");
             _audioSource.loop = false;
-            _collectAmount = 10f;
+            _collectAmount = 30f;
         }
         
         public override NodeState Evaluate()
@@ -51,6 +51,7 @@ namespace AI.BehaviourTree
                     Root.ClearData("Target");
                     _animator.SetBool(IsChopping, false);
                     _axe.SetActive(false);
+                    // _state = NodeState.Success;
                 }
             }
             else

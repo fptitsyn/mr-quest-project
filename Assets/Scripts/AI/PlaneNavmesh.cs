@@ -12,17 +12,21 @@ namespace AI
     {
         [SerializeField] private ARPlaneManager arPlaneManager;
 
+        // private List<ARPlane> _planes = new List<ARPlane>();
+        
         private void Start()
         {
-            XRPlaneSubsystem subsystem = arPlaneManager.subsystem;
-            if (subsystem != null)
-            {
-                Debug.Log("Planes are working (evidently they are not)");
-                Debug.Log(subsystem.currentPlaneDetectionMode);
-                subsystem.requestedPlaneDetectionMode = PlaneDetectionMode.Horizontal;
-                Debug.Log(subsystem.currentPlaneDetectionMode);
-                Debug.Log(arPlaneManager.enabled);
-            }
+            // XRPlaneSubsystem subsystem = arPlaneManager.subsystem;
+            // if (subsystem != null)
+            // {
+            //     Debug.Log("Planes are working (evidently they are not)");
+            //     Debug.Log("requested " + subsystem.requestedPlaneDetectionMode);
+            //     Debug.Log("current " + subsystem.currentPlaneDetectionMode);
+            //     subsystem.requestedPlaneDetectionMode = PlaneDetectionMode.Horizontal;
+            //     Debug.Log("requested " + subsystem.requestedPlaneDetectionMode);
+            //     Debug.Log("current " + subsystem.currentPlaneDetectionMode);
+            //     Debug.Log("ar plane manager enabled" + arPlaneManager.enabled);
+            // }
         }
 
         private void OnEnable()
@@ -37,26 +41,33 @@ namespace AI
 
         private void OnPlanesChanged(ARPlanesChangedEventArgs changes)
         {
-            Debug.Log("plane added");
             foreach (var plane in changes.added)
             {
                 if (plane.alignment == PlaneAlignment.HorizontalUp)
                 {
-                    Debug.Log("horizontalup plane added");
-                    plane.gameObject.layer = LayerMask.NameToLayer("HorizontalUp");
-                    plane.GetComponent<NavMeshSurface>().enabled = true;
-                    NavMeshSurface surface = plane.GetComponent<NavMeshSurface>();
-                    surface.BuildNavMesh();
+                    // if (_planes.Count < 20)
+                    // {
+                        Debug.Log("plane added");
+                        // _planes.Add(plane);
+                        Debug.Log("horizontalup plane added");
+                        plane.gameObject.layer = LayerMask.NameToLayer("HorizontalUp");
+                        plane.GetComponent<NavMeshSurface>().enabled = true;
+                        NavMeshSurface surface = plane.GetComponent<NavMeshSurface>();
+                        surface.BuildNavMesh();
+                    // }
                 }
             }
 
             foreach (var plane in changes.updated)
             {
-                Debug.Log("plane updated");
                 if (plane.alignment == PlaneAlignment.HorizontalUp)
                 {
+                    // if (!_planes.Contains(plane))
+                    // {
+                    //     return;
+                    // }
                     Debug.Log("horizontalup plane updated");
-                    plane.gameObject.layer = LayerMask.NameToLayer("HorizontalUp");
+                    // plane.gameObject.layer = LayerMask.NameToLayer("HorizontalUp");
                     NavMeshSurface surface = plane.GetComponent<NavMeshSurface>();
                     surface.BuildNavMesh();
                 }
@@ -66,11 +77,16 @@ namespace AI
             {
                 if (plane.alignment == PlaneAlignment.HorizontalUp)
                 {
-                    NavMeshSurface surface = plane.GetComponent<NavMeshSurface>();
-                    if (surface.enabled)
-                    {
-                        surface.RemoveData();
-                    }
+                    // if (_planes.Contains(plane))
+                    // {
+                    //     _planes.Remove(plane);
+                        Debug.Log("horizontalup plane removed");
+                        NavMeshSurface surface = plane.GetComponent<NavMeshSurface>();
+                        if (surface.enabled)
+                        {
+                            surface.RemoveData();
+                        }
+                    // }
                 }
             }
         }

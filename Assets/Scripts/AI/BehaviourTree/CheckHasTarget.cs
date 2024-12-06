@@ -9,6 +9,7 @@ namespace AI.BehaviourTree
         {
             bool hasTarget = Root.GetData("Target") != null;
             _state = hasTarget ? NodeState.Success : NodeState.Failure;
+            // Debug.Log("Target " + hasTarget);
             return _state;
         }
     }

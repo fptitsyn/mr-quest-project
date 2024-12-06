@@ -2803,7 +2803,7 @@
                 {
                     "name": "",
                     "id": "7118b60a-7e3e-4105-9582-040359fa3560",
-                    "path": "<XRController>{RightHand}/{TriggerButton}",
+                    "path": "*/{PrimaryButton}",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",

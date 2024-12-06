@@ -25,44 +25,44 @@ namespace Spawn
             if (xrRayInteractor.enabled && xrRayInteractor.TryGetCurrent3DRaycastHit(out var raycastHit, out _))
             {
                 Debug.Log("Raycast Hit");
-                if (raycastHit.transform.TryGetComponent(out ARPlane arPlane) && arPlane.classification == SpawnObjectPicker.TargetPlaneClassification)
+                if (raycastHit.transform.TryGetComponent(out ARPlane arPlane))
                 {
                     Debug.Log("Target Plane");
                     AudioManager.Instance.PlaySfx("Spawn");
                     var hitPose = new Pose(raycastHit.point, Quaternion.LookRotation(raycastHit.normal));
 
-                    var instantiate = Instantiate(SpawnObjectPicker.PickedObject, hitPose.position, hitPose.rotation);
+                    var instantiate = Instantiate(SpawnObjectPicker.PickedObject, hitPose.position, Quaternion.identity);
                     // instantiate.name = "SpawnedObject";
                     
-                    instantiate.AddComponent<ARAnchor>();
+                    // instantiate.AddComponent<ARAnchor>();
                     if (instantiate.CompareTag("Tree"))
                     {
-                        Debug.Log("added tree");
+                        // Debug.Log("added tree");
                         Trees.Add(instantiate);
                     }
                 }
             }
         }
 
-        private void SpawnOnKey(InputAction.CallbackContext context)
-        {
-            AudioManager.Instance.PlaySfx("Spawn");
-            GameObject player = GameObject.Find("SimulationCamera");
-            var instantiate = Instantiate(SpawnObjectPicker.PickedObject, player.transform.position + Vector3.down * 3, Quaternion.identity);
-            // instantiate.name = "SpawnedObject";
-            if (instantiate.CompareTag("Tree"))
-            {
-                Debug.Log("added tree");
-                // trees.Add(instantiate);
-            }
-            instantiate.AddComponent<ARAnchor>();
-        }
+        // private void SpawnOnKey(InputAction.CallbackContext context)
+        // {
+        //     AudioManager.Instance.PlaySfx("Spawn");
+        //     GameObject player = GameObject.Find("SimulationCamera");
+        //     var instantiate = Instantiate(SpawnObjectPicker.PickedObject, player.transform.position + Vector3.down * 3, Quaternion.identity);
+        //     // instantiate.name = "SpawnedObject";
+        //     if (instantiate.CompareTag("Tree"))
+        //     {
+        //         Debug.Log("added tree");
+        //         // trees.Add(instantiate);
+        //     }
+        //     instantiate.AddComponent<ARAnchor>();
+        // }
         
         private void OnEnable()
         {
-            #if UNITY_EDITOR
-            spawnOnKeyAction.action.performed += SpawnOnKey;
-            #endif
+            // #if UNITY_EDITOR
+            // spawnOnKeyAction.action.performed += SpawnOnKey;
+            // #endif
             spawnAction.action.Enable();
             spawnAction.action.performed += Spawn;
             switchAction.action.Enable();
@@ -70,9 +70,9 @@ namespace Spawn
 
         private void OnDisable()
         {
-            #if UNITY_EDITOR
-            spawnOnKeyAction.action.performed += SpawnOnKey;
-            #endif
+            // #if UNITY_EDITOR
+            // spawnOnKeyAction.action.performed += SpawnOnKey;
+            // #endif
             spawnAction.action.Disable();
             spawnAction.action.performed -= Spawn;
             switchAction.action.Disable();
