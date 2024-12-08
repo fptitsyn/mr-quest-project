@@ -44,24 +44,24 @@ namespace Spawn
             }
         }
 
-        // private void SpawnOnKey(InputAction.CallbackContext context)
-        // {
-        //     AudioManager.Instance.PlaySfx("Spawn");
-        //     GameObject player = GameObject.Find("SimulationCamera");
-        //     var instantiate = Instantiate(SpawnObjectPicker.PickedObject, player.transform.position + Vector3.down * 3, Quaternion.identity);
-        //     // instantiate.name = "SpawnedObject";
-        //     if (instantiate.CompareTag("Tree"))
-        //     {
-        //         Debug.Log("added tree");
-        //         // trees.Add(instantiate);
-        //     }
-        //     instantiate.AddComponent<ARAnchor>();
-        // }
+        private void SpawnOnKey(InputAction.CallbackContext context)
+        {
+            AudioManager.Instance.PlaySfx("Spawn");
+            GameObject player = GameObject.Find("SimulationCamera");
+            var instantiate = Instantiate(SpawnObjectPicker.PickedObject, player.transform.position + Vector3.down * 3, Quaternion.identity);
+            // instantiate.name = "SpawnedObject";
+            if (instantiate.CompareTag("Tree"))
+            {
+                Debug.Log("added tree");
+                // trees.Add(instantiate);
+            }
+            instantiate.AddComponent<ARAnchor>();
+        }
         
         private void OnEnable()
         {
             // #if UNITY_EDITOR
-            // spawnOnKeyAction.action.performed += SpawnOnKey;
+            spawnOnKeyAction.action.performed += SpawnOnKey;
             // #endif
             spawnAction.action.Enable();
             spawnAction.action.performed += Spawn;
@@ -71,7 +71,7 @@ namespace Spawn
         private void OnDisable()
         {
             // #if UNITY_EDITOR
-            // spawnOnKeyAction.action.performed += SpawnOnKey;
+            spawnOnKeyAction.action.performed += SpawnOnKey;
             // #endif
             spawnAction.action.Disable();
             spawnAction.action.performed -= Spawn;
