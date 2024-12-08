@@ -20,6 +20,8 @@ namespace AI
         public static float CurrentWoodInStock = 0f;
 
         private const float SearchThreshold = 0.07f;
+        private const float HouseWoodCost = 180f;
+        
         private Node _rootNode;
         
         private void Start()
@@ -39,14 +41,14 @@ namespace AI
                 new CheckHasHouse(),
                 new Sequence(new List<Node>
                 {
-                    new CheckStock(),
+                    new CheckStock(HouseWoodCost),
                     // new CheckHasVillage(),
                     // go to village
                     
                     // build house
                     new Timer(5.0f, new List<Node>
                     {
-                        new TaskBuildHouse(transform)
+                        new TaskBuildHouse(transform, HouseWoodCost)
                     }, _animator, hammerObject, audioSource)
                 }),
                 

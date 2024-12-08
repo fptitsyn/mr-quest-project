@@ -4,7 +4,12 @@ namespace AI.BehaviourTree
 {
     public class CheckStock : Node
     {
-        private readonly float _houseCost = 120f;
+        private readonly float _houseCost;
+
+        public CheckStock(float houseWoodCost)
+        {
+            _houseCost = houseWoodCost;
+        }
         
         public override NodeState Evaluate()
         {
