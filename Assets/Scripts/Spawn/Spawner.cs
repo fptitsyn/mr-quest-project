@@ -16,11 +16,16 @@ namespace Spawn
         [SerializeField] private XRRayInteractor xrRayInteractor;
         // [SerializeField] private PlaneClassification targetPlaneClassification;
         // [SerializeField] private GameObject objectPrefab;
-    
+
         public static List<GameObject> Trees = new ();
-        
+
         private void Spawn(InputAction.CallbackContext context)
         {
+            if (SpawnObjectPicker.ObjectManaCost > Player.Instance.Mana)
+            {
+                return;
+            }
+
             Debug.Log("Spawning");
             if (xrRayInteractor.enabled && xrRayInteractor.TryGetCurrent3DRaycastHit(out var raycastHit, out _))
             {
@@ -40,12 +45,19 @@ namespace Spawn
                         // Debug.Log("added tree");
                         Trees.Add(instantiate);
                     }
+                    
+                    Player.Instance.Mana -= SpawnObjectPicker.ObjectManaCost;
                 }
             }
         }
 
         private void SpawnOnKey(InputAction.CallbackContext context)
         {
+            if (SpawnObjectPicker.ObjectManaCost > Player.Instance.Mana)
+            {
+                return;
+            }
+            
             AudioManager.Instance.PlaySfx("Spawn");
             GameObject player = GameObject.Find("SimulationCamera");
             var instantiate = Instantiate(SpawnObjectPicker.PickedObject, player.transform.position + Vector3.down * 3, Quaternion.identity);
@@ -53,16 +65,17 @@ namespace Spawn
             if (instantiate.CompareTag("Tree"))
             {
                 Debug.Log("added tree");
-                // trees.Add(instantiate);
+                Trees.Add(instantiate);
             }
             instantiate.AddComponent<ARAnchor>();
+            Player.Instance.Mana -= SpawnObjectPicker.ObjectManaCost;
         }
         
         private void OnEnable()
         {
-            // #if UNITY_EDITOR
+            #if UNITY_EDITOR
             spawnOnKeyAction.action.performed += SpawnOnKey;
-            // #endif
+            #endif
             spawnAction.action.Enable();
             spawnAction.action.performed += Spawn;
             switchAction.action.Enable();
@@ -70,9 +83,9 @@ namespace Spawn
 
         private void OnDisable()
         {
-            // #if UNITY_EDITOR
+            #if UNITY_EDITOR
             spawnOnKeyAction.action.performed += SpawnOnKey;
-            // #endif
+            #endif
             spawnAction.action.Disable();
             spawnAction.action.performed -= Spawn;
             switchAction.action.Disable();

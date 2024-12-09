@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     private const float MaxMana = 200f;
 
     private float _mana;
+
     public float Mana
     {
         get => _mana;
@@ -20,6 +22,26 @@ public class Player : MonoBehaviour
     private float _timer;
     private const float GenerationCooldown = 1f;
     private bool _canAdd = true;
+
+    public static Player Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(Instance);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        Mana = 50;
+    }
 
     private void Update()
     {

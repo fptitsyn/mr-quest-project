@@ -12,9 +12,13 @@ namespace Spawn
         
         public static GameObject PickedObject;
         public static PlaneClassification TargetPlaneClassification;
+        public static float ObjectManaCost;
         
         private InputAction _setCharacterAction;
         private InputAction _setTreesAction;
+        
+        private const float TreeCost = 5;
+        private const float CharacterCost = 25;
         
         private void Start()
         {
@@ -28,6 +32,7 @@ namespace Spawn
         {
             PickedObject = Resources.Load("Prefabs/Characters/Male1") as GameObject;
             TargetPlaneClassification = PlaneClassification.Table;
+            ObjectManaCost = CharacterCost;
             Debug.Log("character");
         }
         
@@ -36,6 +41,7 @@ namespace Spawn
             int r = Random.Range(1, 5);
             PickedObject = Resources.Load($"Prefabs/Trees/Tree{r}") as GameObject;
             TargetPlaneClassification = PlaneClassification.Floor;
+            ObjectManaCost = TreeCost;
             Debug.Log("tree");
         }
 

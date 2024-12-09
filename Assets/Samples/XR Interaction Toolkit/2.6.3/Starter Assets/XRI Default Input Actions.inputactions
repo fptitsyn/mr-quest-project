@@ -2813,6 +2813,17 @@
                 },
                 {
                     "name": "",
+                    "id": "f4363bef-d557-4ac6-8cd6-dcf37b2d9bc7",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard",
+                    "action": "Spawn Multicolored Cubes",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e43a6de7-9e40-4ef8-b8e5-f02545828503",
                     "path": "<XRController>{RightHand}/{Primary2DAxis}",
                     "interactions": "",
