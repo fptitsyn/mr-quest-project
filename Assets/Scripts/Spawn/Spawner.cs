@@ -18,6 +18,7 @@ namespace Spawn
         // [SerializeField] private GameObject objectPrefab;
 
         public static List<GameObject> Trees = new ();
+        public static List<GameObject> Characters = new ();
 
         private void Spawn(InputAction.CallbackContext context)
         {
@@ -43,7 +44,12 @@ namespace Spawn
                     if (instantiate.CompareTag("Tree"))
                     {
                         // Debug.Log("added tree");
+                        instantiate.AddComponent<ARAnchor>();
                         Trees.Add(instantiate);
+                    }
+                    else // characters
+                    {
+                        Characters.Add(instantiate);
                     }
                     
                     Player.Instance.Mana -= SpawnObjectPicker.ObjectManaCost;

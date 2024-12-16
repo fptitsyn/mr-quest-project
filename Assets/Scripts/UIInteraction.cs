@@ -7,7 +7,6 @@ using UnityEngine.XR.OpenXR.Features.Meta;
 
 public class UIInteraction : MonoBehaviour
 {
-    [SerializeField] private Button spawnCapsuleButton;
     [SerializeField] private Button resetSceneButton;
     [SerializeField] private Button exitButton;
     [SerializeField] private Button settingsButton;
@@ -20,7 +19,6 @@ public class UIInteraction : MonoBehaviour
 
     private void Awake()
     {
-        spawnCapsuleButton.onClick.AddListener(SpawnCapsule);
         resetSceneButton.onClick.AddListener(ResetScene);
         exitButton.onClick.AddListener(ExitGame);
         settingsButton.onClick.AddListener(ToggleSettings);
@@ -30,13 +28,6 @@ public class UIInteraction : MonoBehaviour
     private void Start()
     {
         AudioManager.Instance.ShuffleMusic();
-    }
-
-    private void SpawnCapsule()
-    {
-        // AudioManager.Instance.PlaySfx("Click");
-        AudioManager.Instance.PlaySfx("Spawn");
-        Instantiate(capsulePrefab, transform.position - transform.forward * 0.5f, Quaternion.identity);
     }
     
     private void ResetScene()

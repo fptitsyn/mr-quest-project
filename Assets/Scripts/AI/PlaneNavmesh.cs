@@ -75,6 +75,7 @@ namespace AI
 
             foreach (var plane in changes.removed)
             {
+                // Maybe don't actually do anything
                 if (plane.alignment == PlaneAlignment.HorizontalUp)
                 {
                     // if (_planes.Contains(plane))
