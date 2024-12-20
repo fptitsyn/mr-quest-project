@@ -14,6 +14,10 @@ namespace AI
 
         // private List<ARPlane> _planes = new List<ARPlane>();
         
+        // private float _timer;
+        // private const float Cooldown = 1f;
+        // private bool _canUpdate = true;
+        
         private void Start()
         {
             // XRPlaneSubsystem subsystem = arPlaneManager.subsystem;
@@ -41,18 +45,27 @@ namespace AI
 
         private void OnPlanesChanged(ARPlanesChangedEventArgs changes)
         {
+            // if (!_canUpdate)
+            // {
+            //     _timer -= Time.deltaTime;
+            //     if (_timer <= 0)
+            //     {
+            //         _timer = Cooldown;
+            //         _canUpdate = true;
+            //     }
+            //     return;
+            // }
             foreach (var plane in changes.added)
             {
                 if (plane.alignment == PlaneAlignment.HorizontalUp)
                 {
                     // if (_planes.Count < 20)
                     // {
-                        Debug.Log("plane added");
                         // _planes.Add(plane);
-                        Debug.Log("horizontalup plane added");
                         plane.gameObject.layer = LayerMask.NameToLayer("HorizontalUp");
-                        plane.GetComponent<NavMeshSurface>().enabled = true;
+                        // plane.GetComponent<NavMeshSurface>().enabled = true;
                         NavMeshSurface surface = plane.GetComponent<NavMeshSurface>();
+                        surface.enabled = true;
                         surface.BuildNavMesh();
                     // }
                 }
@@ -66,12 +79,13 @@ namespace AI
                     // {
                     //     return;
                     // }
-                    Debug.Log("horizontalup plane updated");
                     // plane.gameObject.layer = LayerMask.NameToLayer("HorizontalUp");
                     NavMeshSurface surface = plane.GetComponent<NavMeshSurface>();
                     surface.BuildNavMesh();
                 }
             }
+
+            // _canUpdate = false;
 
             // foreach (var plane in changes.removed)
             // {

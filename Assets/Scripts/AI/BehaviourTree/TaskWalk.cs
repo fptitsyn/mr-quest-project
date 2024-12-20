@@ -18,6 +18,7 @@ namespace AI.BehaviourTree
             _animator = animator;
             _transform = transform;
             _threshold = threshold;
+            _agent.speed = 0.5f;
         }
         
         public override NodeState Evaluate()
@@ -41,7 +42,6 @@ namespace AI.BehaviourTree
                 {
                     _agent.isStopped = true;
                     _animator.SetFloat(MoveSpeed, 0f);
-                    Debug.Log("дошёл ура");
                     _state = NodeState.Success;
                 }
                 // else

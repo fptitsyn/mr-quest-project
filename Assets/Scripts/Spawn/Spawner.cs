@@ -27,13 +27,10 @@ namespace Spawn
                 return;
             }
 
-            Debug.Log("Spawning");
             if (xrRayInteractor.enabled && xrRayInteractor.TryGetCurrent3DRaycastHit(out var raycastHit, out _))
             {
-                Debug.Log("Raycast Hit");
                 if (raycastHit.transform.TryGetComponent(out ARPlane arPlane))
                 {
-                    Debug.Log("Target Plane");
                     AudioManager.Instance.PlaySfx("Spawn");
                     var hitPose = new Pose(raycastHit.point, Quaternion.LookRotation(raycastHit.normal));
 

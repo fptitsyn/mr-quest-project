@@ -27,7 +27,6 @@ namespace AI.BehaviourTree
         
         private GameObject GetClosestTree(Vector3 position)
         {
-            Debug.Log(Spawner.Trees.Count);
             GameObject closestTree = Spawner.Trees[0];
             float minSqrDistance = Vector3.SqrMagnitude(Spawner.Trees[0].transform.position - position);
             foreach (var tree in Spawner.Trees)

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.XR.ARSubsystems;
 using Random = UnityEngine.Random;
 
@@ -9,6 +10,9 @@ namespace Spawn
     public class SpawnObjectPicker : MonoBehaviour
     {
         [SerializeField] private InputActionAsset actions;
+
+        [SerializeField] private Button characterButton;
+        [SerializeField] private Button treeButton;
         
         public static GameObject PickedObject;
         public static PlaneClassification TargetPlaneClassification;
@@ -33,7 +37,8 @@ namespace Spawn
             PickedObject = Resources.Load("Prefabs/Characters/Male1") as GameObject;
             TargetPlaneClassification = PlaneClassification.Table;
             ObjectManaCost = CharacterCost;
-            Debug.Log("character");
+            treeButton.image.color = Color.white;
+            characterButton.image.color = Color.gray;
         }
         
         public void SetTrees()
@@ -42,7 +47,8 @@ namespace Spawn
             PickedObject = Resources.Load($"Prefabs/Trees/Tree{r}") as GameObject;
             TargetPlaneClassification = PlaneClassification.Floor;
             ObjectManaCost = TreeCost;
-            Debug.Log("tree");
+            treeButton.image.color = Color.grey;
+            characterButton.image.color = Color.white;
         }
 
         private void Update()

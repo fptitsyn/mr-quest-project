@@ -1119,7 +1119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlanePrefab: {fileID: 504461769168045726, guid: 198497c514e2218489f69e77a11e3d5d,
     type: 3}
-  m_DetectionMode: -1
+  m_DetectionMode: 1
 --- !u!114 &416674173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1746,6 +1746,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actions: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  characterButton: {fileID: 1928199628}
+  treeButton: {fileID: 1881369757}
 --- !u!114 &653763377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3404,7 +3406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dff405ff1a9f464090b84571c956a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCapsuleButton: {fileID: 852321548}
   resetSceneButton: {fileID: 1693410264}
   exitButton: {fileID: 1689770288}
   settingsButton: {fileID: 1374094735}
