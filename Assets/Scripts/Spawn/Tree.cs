@@ -11,7 +11,7 @@ namespace Spawn
         public float Health
         {
             get => health;
-            set => health = Mathf.Clamp(value, 0f, 50f);
+            set => health = Mathf.Clamp(value, 0f, 60f);
         }
 
         private void Start()
@@ -24,6 +24,7 @@ namespace Spawn
             Health -= damage;
             if (Health <= 0f)
             {
+                Debug.Log("deleted");
                 Spawner.Trees.Remove(gameObject);
                 Destroy(gameObject);
                 return true;

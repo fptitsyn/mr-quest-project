@@ -45,7 +45,6 @@ namespace Spawn
                     {
                         // Debug.Log("added tree");
                         instantiate.AddComponent<ARAnchor>();
-                        Trees.Add(instantiate);
                     }
                     else // characters
                     {
@@ -70,8 +69,7 @@ namespace Spawn
             // instantiate.name = "SpawnedObject";
             if (instantiate.CompareTag("Tree"))
             {
-                Debug.Log("added tree");
-                Trees.Add(instantiate);
+                // Debug.Log("added tree");
             }
             instantiate.AddComponent<ARAnchor>();
             Player.Instance.Mana -= SpawnObjectPicker.ObjectManaCost;

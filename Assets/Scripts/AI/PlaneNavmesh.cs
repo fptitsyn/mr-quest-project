@@ -73,23 +73,23 @@ namespace AI
                 }
             }
 
-            foreach (var plane in changes.removed)
-            {
-                // Maybe don't actually do anything
-                if (plane.alignment == PlaneAlignment.HorizontalUp)
-                {
-                    // if (_planes.Contains(plane))
-                    // {
-                    //     _planes.Remove(plane);
-                        Debug.Log("horizontalup plane removed");
-                        NavMeshSurface surface = plane.GetComponent<NavMeshSurface>();
-                        if (surface.enabled)
-                        {
-                            surface.RemoveData();
-                        }
-                    // }
-                }
-            }
+            // foreach (var plane in changes.removed)
+            // {
+            //     // Maybe don't actually do anything
+            //     if (plane.alignment == PlaneAlignment.HorizontalUp)
+            //     {
+            //         // if (_planes.Contains(plane))
+            //         // {
+            //         //     _planes.Remove(plane);
+            //             Debug.Log("horizontalup plane removed");
+            //             NavMeshSurface surface = plane.GetComponent<NavMeshSurface>();
+            //             if (surface.enabled)
+            //             {
+            //                 surface.RemoveData();
+            //             }
+            //         // }
+            //     }
+            // }
         }
     }
 }
